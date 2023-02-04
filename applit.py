@@ -34,7 +34,8 @@ grafico1 = st.container()
 
 with header:
     st.title("ESTUDO DE ACIDENTES NA CIDADE DO RECIFE")
-    st.image(back_img)
+    st.image('http://transito.gtrans.com.br/cttupe/index.php/portal/getImg/192.168.10.120/')
+    # st.image(back_img)
 
 with dataset:
     st.title('Visualização incial do dataset')
@@ -45,9 +46,9 @@ with features:
     bairro = st.selectbox(
     'Selecione o bairro',
     options=create_lista_bairros(df))
-    legenda = st.select_slider(
+    legenda = st.selectbox(
     'Selecione o filtro',
-    options=lista_filtros,value='vitimas')
+    options=lista_filtros)
     
 with grafico1:
     if bairro == "TODOS" or bairro == None:
