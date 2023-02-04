@@ -7,8 +7,8 @@ import numpy as np
 
 
 df = pd.read_excel("./data/acidentes2021.xlsx")
-back_img = Image.open('./data/img/transito-recife.jpg')
 TAMANHO_DATASET = df.shape[0]
+IMG_TRANSITO_PATH = 'http://transito.gtrans.com.br/cttupe/index.php/portal/getImg/192.168.10.120/'
 
 # filtros
 lista_bairros = df["bairro"].unique()
@@ -29,17 +29,16 @@ st.set_page_config(
 header = st.container()
 dataset = st.container()
 features = st.container()
-grafico1 = st.container()
+graficos = st.container()
 
 
 with header:
     st.title("ESTUDO DE ACIDENTES NA CIDADE DO RECIFE")
-    st.image('http://transito.gtrans.com.br/cttupe/index.php/portal/getImg/192.168.10.120/')
-    # st.image(back_img)
+    st.image(IMG_TRANSITO_PATH)
 
 with dataset:
     st.title('Visualização incial do dataset')
-    quantidade_itens = st.slider('Quantos itens deseja mostrar?', 0,TAMANHO_DATASET,(0,5))
+    quantidade_itens = st.slider('Quantos itens deseja mostrar?', 0,TAMANHO_DATASET,(0,TAMANHO_DATASET))
     st.dataframe(df.iloc[quantidade_itens[0]:quantidade_itens[1],:])
     
 with features:
@@ -50,7 +49,7 @@ with features:
     'Selecione o filtro',
     options=lista_filtros)
     
-with grafico1:
+with graficos:
     if bairro == "TODOS" or bairro == None:
         bairro = "TODOS"
         df4 = df.copy()
