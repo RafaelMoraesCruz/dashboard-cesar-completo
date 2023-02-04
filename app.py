@@ -14,6 +14,7 @@ app = Dash(__name__)
 app.layout = html.Div(
     [
         html.H1("Dashboard CESAR School grupo 5"),
+        html.Img(),
         html.Div(
             [
                 html.Div(
@@ -78,13 +79,13 @@ def update_output(bairro, legenda):
 
         figpie = px.pie(
             df4,
-            values=df4["natureza_acidente"].value_counts(normalize=True).values * 100,
-            names=df4["natureza_acidente"].value_counts().index,
+            values=df4[legenda].value_counts(normalize=True).values * 100,
+            names=df4[legenda].value_counts().index,
         )
         figpie.update_traces(
             hoverinfo="label",
             textinfo="percent",
-            title=f"<b>Tipos de vítimas por acidentes em {bairro} os bairros</b>",
+            title=f"<b>Tipos de {legenda} por acidentes em {bairro} os bairros</b>",
         )
 
         return fig, figpie
@@ -110,13 +111,13 @@ def update_output(bairro, legenda):
 
         figpie = px.pie(
             df4,
-            values=df4["natureza_acidente"].value_counts(normalize=True).values * 100,
-            names=df4["natureza_acidente"].value_counts().index,
+            values=df4[legenda].value_counts(normalize=True).values * 100,
+            names=df4[legenda].value_counts().index,
         )
         figpie.update_traces(
             hoverinfo="label",
             textinfo="percent",
-            title=f"<b>Tipos de vítimas por acidentes no bairro {bairro}</b>",
+            title=f"<b>Tipos de {legenda} por acidentes no bairro {bairro}</b>",
         )
 
         return fig, figpie
