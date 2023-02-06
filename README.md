@@ -12,7 +12,7 @@
 
 Passo a passo para criar virtualenv e rodar no Windows (git bash)
 ``` 
-python3 -m venv .venv-dashboard
+python3 -m venv .venv
 . venv/Scripts/activate
 pip3 install -r requirements.txt
 ```
